@@ -9,7 +9,7 @@
 - name: add ros repository
   become: yes
   apt_repository:
-    repo: "deb http://packages.ros.org/ros/ubuntu buster main
+    repo: "deb http://packages.ros.org/ros/ubuntu buster main"
     state: present
     filename: ros.list
     update_cache: yes
