@@ -28,3 +28,7 @@
   become: yes
   shell:
     cmd: rosdep init
+
+- name: init rosdep
+  shell:
+    cmd: rosdep update
