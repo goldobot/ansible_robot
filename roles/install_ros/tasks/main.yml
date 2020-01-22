@@ -24,11 +24,32 @@
       - python-rosinstall
       - build-essential
       
+- name: check if rosdep init is needed
+  stat:
+    path: /etc/ros/rosdep/sources.list.d/20-default.list
+  register: stat_result
+  
 - name: init rosdep
+  when: stat_result.stat.exists == False
   become: yes
   shell:
     cmd: rosdep init
 
-- name: init rosdep
+- name: update rosdep
   shell:
     cmd: rosdep update
+
+- name: create catkin workspace directory
+  file:
+    path: ~/ros_catkin_ws
+    state: directory
+    
+- name: init rosdep
+  shell:
+    chdir: ~/ros_catkin_ws
+    cmd: rosinstall_generator ros_comm --rosdistro melodic --deps --tar > melodic-ros_comm.rosinstall
+    
+
+#wstool init -j8 src melodic-ros_comm.rosinstall
+#rosdep install --from-paths src --ignore-src --rosdistro melodic -
+#./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
