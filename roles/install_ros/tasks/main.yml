@@ -18,8 +18,8 @@
   become: yes
   apt:
     name:
-      - python-rosdep 
-      - python-rosinstall-generator 
-      - python-wstool 
-      - python-rosinstall 
+      - python-rosdep
+      - python-rosinstall-generator
+      - python-wstool
+      - python-rosinstall
       - build-essential
