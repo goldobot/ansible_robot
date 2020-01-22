@@ -59,5 +59,7 @@
     chdir: ~/ros_catkin_ws
     cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
     
-#rosdep install --from-paths src --ignore-src --rosdistro melodic -
-#./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+- name: build ros
+  shell:
+    chdir: ~/ros_catkin_ws
+    cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
