@@ -44,7 +44,7 @@
     path: ~/ros_catkin_ws
     state: directory
     
-- name: init rosdep
+- name: generate rosinstall file
   shell:
     chdir: ~/ros_catkin_ws
     cmd: rosinstall_generator ros_comm --rosdistro melodic --deps --tar > melodic-ros_comm.rosinstall
@@ -53,6 +53,11 @@
   shell:
     chdir: ~/ros_catkin_ws
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
+    
+- name: install dependencies
+  shell:
+    chdir: ~/ros_catkin_ws
+    cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
     
 #rosdep install --from-paths src --ignore-src --rosdistro melodic -
 #./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
