@@ -1,0 +1,5 @@
+# File: beats_install.yml
+---
+- hosts: robots
+  roles:
+  - install_ros

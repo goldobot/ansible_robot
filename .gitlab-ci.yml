@@ -1,0 +1,11 @@
+stages:
+  - deploy
+    
+install_ros:
+  stage: deploy
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook -i hosts install_ros.yml
+    
