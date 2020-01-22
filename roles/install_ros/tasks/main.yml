@@ -23,3 +23,8 @@
       - python-wstool
       - python-rosinstall
       - build-essential
+      
+- name: init rosdep
+  become: yes
+  shell:
+    cmd: rosdep init
