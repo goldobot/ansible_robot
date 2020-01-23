@@ -1,0 +1,4 @@
+---
+ansible_user: goldo
+ansible_ssh_pass: goldo
+ansible_become_password: goldo

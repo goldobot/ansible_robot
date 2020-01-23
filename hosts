@@ -1,2 +1,2 @@
 [robots]
-localhost ansible_connection=local ansible_become_password=password
+raspberrypi01
