@@ -36,7 +36,6 @@
     cmd: rosdep init
 
 - name: update rosdep
-  become: yes
   shell:
     cmd: rosdep update
 
