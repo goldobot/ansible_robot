@@ -72,6 +72,7 @@
     cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 
 - name: create install directory
+  become:yes
   file:
     path: /opt/ros/melodic
     state: directory
