@@ -68,7 +68,6 @@
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
     
 - name: install dependencies
-  become: yes
   shell:
     chdir: ~/ros_catkin_ws
     cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
