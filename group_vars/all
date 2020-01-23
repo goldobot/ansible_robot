@@ -1,4 +1,5 @@
 ---
-ansible_user: goldo
-ansible_ssh_pass: goldo
-ansible_become_password: goldo
+ansible_user: pi
+ansible_ssh_pass: raspberry
+ansible_become_password: raspberry
+ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
