@@ -1,0 +1,5 @@
+# File: provision_raspberrypi.yml
+---
+- hosts: robots
+  roles:
+  - base

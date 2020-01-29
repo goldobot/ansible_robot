@@ -1,0 +1,65 @@
+---
+- name: set hostname
+  become: yes
+  hostname:
+    name: "{{inventory_hostname}}"
+    
+- name: set hosts file
+  become: yes
+  template:
+    src: etc/hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: preserve
+    
+- name: copy root ca
+  become: yes
+  copy:
+    src: ThomasLiennardRootCA.crt
+    dest: /usr/local/share/ca-certificates/
+    owner: root
+    group: root
+    mode: '0644'
+  notify: update ca-certificates
+    
+- name: create local user
+  become: yes
+  user:
+    name: thomas-local
+    append: yes
+    groups:
+      - sudo
+    password: $6$lECLv9cU$gvx45ic2ouNR7UNjpcnvV4KSEPQg7GRryn3dziCToBl82Qrczw1P17KwwLpVbQXaWUFTOO5k/Jpa6lOTXN5Ak.
+    shell: /bin/bash
+    
+- name: set local user ssh key
+  become: yes
+  authorized_key:
+    exclusive: yes
+    user: thomas-local
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH \n ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFEkQWNaQeCqYC+f1MKo48IiDEIPL5RnApE8HTUJBhuZ webssh@lab.thomas-liennard.fr"
+
+- name: create ansible user
+  become: yes
+  user:
+    name: ansible
+    append: yes
+    groups:
+      - sudo
+    password: {{ansible_become_password | password_hash('sha512')}}
+    shell: /bin/bash
+
+- name: set ansible user ssh key
+  become: yes
+  authorized_key:
+    exclusive: yes
+    user: ansible
+    key: {{ lookup('file', ansible_ssh_private_key_file + '.pub') }}
+
+- name: install packages
+  become: yes
+  apt:
+    name:
+      - apt-transport-https
+      - git
