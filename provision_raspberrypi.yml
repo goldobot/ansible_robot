@@ -1,5 +1,14 @@
 # File: provision_raspberrypi.yml
 ---
+- name: reset host key
+  hosts: robots
+  connection: local
+  tasks:
+  - name: remove existing key
+    known_hosts:
+      name: "{{ inventory_hostname }}"
+      state: absent
+
 - hosts: robots
   vars:
   - ansible_user: pi
