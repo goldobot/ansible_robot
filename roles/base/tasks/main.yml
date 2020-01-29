@@ -47,7 +47,7 @@
     append: yes
     groups:
       - sudo
-    password: "{{ansible_become_password | password_hash('sha512')}}"
+    password: "{{ansible_password | password_hash('sha512')}}"
     shell: /bin/bash
 
 - name: set ansible user ssh key
@@ -55,7 +55,7 @@
   authorized_key:
     exclusive: yes
     user: ansible
-    key: "{{ lookup('file', ansible_ssh_private_key_file + '.pub') }}"
+    key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
 
 - name: install packages
   become: yes
