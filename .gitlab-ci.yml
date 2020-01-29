@@ -5,7 +5,7 @@ install_ros:
   stage: deploy
   when: manual
   tags:
-    - raspberrypi3
+    - ansible
   script:
     - ansible-playbook -i hosts install_ros.yml
     
