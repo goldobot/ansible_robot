@@ -1,0 +1,25 @@
+---
+- name: create ansible user
+  become: yes
+  user:
+    name: ansible
+    append: yes
+    groups:
+      - sudo
+    password: "{{ansible_password | password_hash('sha512')}}"
+    shell: /bin/bash
+
+- name: set ansible user ssh key
+  become: yes
+  authorized_key:
+    exclusive: yes
+    user: ansible
+    key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+
+- name: generate ansible private ssh key
+  become: yes  
+  openssh_keypair:
+    path: /home/ansible/.ssh/id_ed25519
+    type: ed25519
+    owner: ansible
+    group: ansible

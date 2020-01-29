@@ -1,13 +1,21 @@
 stages:
   - deploy
     
-provision_raspberrypi:
+provision:
   stage: deploy
   when: manual
   tags:
     - ansible
   script:
     - ansible-playbook -i hosts provision_raspberrypi.yml
+    
+base:
+  stage: deploy
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook -i hosts base.yml
     
 install_ros:
   stage: deploy

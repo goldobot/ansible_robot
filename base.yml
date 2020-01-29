@@ -1,0 +1,5 @@
+# File: base.yml
+---
+- hosts: robots
+  roles:
+  - base
