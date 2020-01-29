@@ -36,7 +36,6 @@
     cmd: rosdep init
 
 - name: update rosdep
-  become: yes
   shell:
     cmd: rosdep update
 
@@ -68,12 +67,19 @@
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
     
 - name: install dependencies
-  become: yes
   shell:
-    chdir: /var/lib/gitlab-runner/ros_catkin_ws
+    chdir: ~/ros_catkin_ws
     cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+
+- name: create install directory
+  become: yes
+  file:
+    path: /opt/ros/melodic
+    state: directory
+    mode : '777'
     
 - name: build ros
   shell:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+    
