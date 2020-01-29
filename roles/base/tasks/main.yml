@@ -47,7 +47,7 @@
     append: yes
     groups:
       - sudo
-    password: {{ansible_become_password | password_hash('sha512')}}
+    password: "{{ansible_become_password | password_hash('sha512')}}"
     shell: /bin/bash
 
 - name: set ansible user ssh key
