@@ -1,6 +1,2 @@
 [robots]
-<<<<<<< HEAD
 raspberrypi01 ansible_user=pi ansible_ssh_pass=raspberry ansible_become_password=raspberry
-=======
-raspberrypi01
->>>>>>> 8f8f69e34c20ec781eca58849b411fc67da41a6f
