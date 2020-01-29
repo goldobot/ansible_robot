@@ -71,3 +71,8 @@
     name:
       - apt-transport-https
       
+- name: delete pi user
+  become: yes
+  user:
+    name: pi
+    state: absent
