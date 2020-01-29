@@ -1,5 +1,10 @@
 # File: provision_raspberrypi.yml
 ---
 - hosts: robots
+  vars:
+  - ansible_user: pi
+  - ansible_ssh_pass: raspberry
+  -ansible_password: raspberry
+  - ansible_become_password: raspberry
   roles:
   - base
