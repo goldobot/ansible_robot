@@ -3,6 +3,6 @@
   become: yes
   apt:
     name:
-      - git
-      - build-essential
       - openocd
+      - xserver-xorg
+      - lightdm

@@ -1,4 +1,4 @@
-# File: beats_install.yml
+# File: install_ros.yml
 ---
 - hosts: robots
   roles:

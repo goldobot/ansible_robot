@@ -1,0 +1,5 @@
+# File: install_gui.yml
+---
+- hosts: robots
+  roles:
+  - install_gui
