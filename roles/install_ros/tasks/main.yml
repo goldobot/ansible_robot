@@ -67,9 +67,11 @@
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
     
 - name: install dependencies
-  command:
+  expect:
     chdir: ~/ros_catkin_ws
-    cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+    command: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+     responses:
+       \[sudo\] password for .*: "{{ansible_become_password}}"
 
 - name: create install directory
   become: yes
