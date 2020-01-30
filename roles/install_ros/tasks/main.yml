@@ -23,6 +23,7 @@
       - python-wstool
       - python-rosinstall
       - build-essential
+      - python-pexpect
       
 - name: check if rosdep init is needed
   stat:
