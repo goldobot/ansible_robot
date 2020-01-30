@@ -23,7 +23,7 @@ install_ros:
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts -v install_ros.yml
+    - ansible-playbook -i hosts install_ros.yml
 
 install_gui:
   stage: deploy

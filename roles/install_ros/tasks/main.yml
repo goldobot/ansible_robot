@@ -83,6 +83,6 @@
     mode : '777'
     
 - name: build ros
-  command:
+  shell:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
