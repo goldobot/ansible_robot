@@ -70,8 +70,8 @@
   expect:
     chdir: ~/ros_catkin_ws
     command: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
-     responses:
-       \[sudo\] password for .*: "{{ansible_become_password}}"
+    responses:
+      \[sudo\] password for .*: "{{ansible_become_password}}"
 
 - name: create install directory
   become: yes
