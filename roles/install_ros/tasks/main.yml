@@ -62,12 +62,12 @@
   
 - name: fetch core packages
   when: stat_result.stat.exists == False
-  shell:
+  command:
     chdir: ~/ros_catkin_ws
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
     
 - name: install dependencies
-  shell:
+  command:
     chdir: ~/ros_catkin_ws
     cmd: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 
@@ -79,7 +79,6 @@
     mode : '777'
     
 - name: build ros
-  shell:
+  command:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
-    
