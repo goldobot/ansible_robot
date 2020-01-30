@@ -80,9 +80,19 @@
   file:
     path: /opt/ros/melodic
     state: directory
-    mode : '777'
+    mode : '755'
+    owner: ansible
     
 - name: build ros
   shell:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+    
+- name: set install directory owner
+  become: yes
+  file:
+    path: /opt/ros/melodic
+    state: directory
+    recurse: yes
+    owner: root
+    group: root
