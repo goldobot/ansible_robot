@@ -71,6 +71,7 @@
   expect:
     chdir: ~/ros_catkin_ws
     command: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+    timeout: 3600
     responses:
       \[sudo\] password for .*: "{{ansible_become_password}}"
 
