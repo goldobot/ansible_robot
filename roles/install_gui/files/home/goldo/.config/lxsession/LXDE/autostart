@@ -1,4 +1,5 @@
 @xset s off
 @xset -dpms
 @xset s noblank
-@unclutter
+@unclutter -root
+chromium-browser --kiosk http://localhost:8080

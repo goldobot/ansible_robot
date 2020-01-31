@@ -6,6 +6,8 @@
       - xserver-xorg
       - lightdm
       - lxde-core
+      - unclutter
+      - chromium-browser
       
 - name: copy lightdm config file
   become: yes
