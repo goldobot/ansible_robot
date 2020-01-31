@@ -1,10 +1,4 @@
----
-- name: remove pi user
-  become: yes
-  user:
-    name: pi
-    state: absent
-    
+--- 
 - name: set hostname
   become: yes
   hostname:
@@ -45,3 +39,9 @@
     exclusive: yes
     user: goldo
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH \n ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFEkQWNaQeCqYC+f1MKo48IiDEIPL5RnApE8HTUJBhuZ webssh@lab.thomas-liennard.fr"
+
+- name: remove pi user
+  become: yes
+  user:
+    name: pi
+    state: absent
