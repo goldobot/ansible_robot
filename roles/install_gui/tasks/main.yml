@@ -15,3 +15,12 @@
     owner: root
     group: root
   notify: restart lightdm
+  
+- name: copy lxde startup config file
+  become: yes
+  copy:
+    src: home/goldo/.config/lxsession/LXDE/autostart
+    dest: /home/goldo/.config/lxsession/LXDE/autostart
+    owner: goldo
+    group: goldo
+  notify: restart lightdm
