@@ -70,7 +70,7 @@
 - name: check python dependencies
   shell:
     chdir: ~/ros_catkin_ws
-    cmd: ROS_PYTHON_VERSION && rosdep check --from-paths src --ignore-src | grep python
+    cmd: export ROS_PYTHON_VERSION=3 && rosdep check --from-paths src --ignore-src | grep python
   register: result
   
 - debug:
@@ -79,7 +79,7 @@
 - name: install dependencies
   expect:
     chdir: ~/ros_catkin_ws
-    command: rosdep install --from-paths src --ignore-src --rosdistro meodic -y
+    command: export ROS_PYTHON_VERSION=3 && rosdep install --from-paths src --ignore-src --rosdistro melodic -y
     timeout: 3600
     responses:
       \[sudo\] password for .*: "{{ansible_become_password}}"
