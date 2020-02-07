@@ -66,11 +66,20 @@
   command:
     chdir: ~/ros_catkin_ws
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
+
+- name: check python dependencies
+  shell:
+    chdir: ~/ros_catkin_ws
+    cmd: rosdep check --from-paths src --ignore-src | grep python
+  register: result
+  
+- debug:
+    var: result
     
 - name: install dependencies
   expect:
     chdir: ~/ros_catkin_ws
-    command: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+    command: rosdep install --from-paths src --ignore-src --rosdistro meodic -y
     timeout: 3600
     responses:
       \[sudo\] password for .*: "{{ansible_become_password}}"
