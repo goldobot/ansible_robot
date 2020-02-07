@@ -86,8 +86,9 @@
     owner: ansible
     
 - name: build ros
+  become: yes
   shell:
-    chdir: ~/ros_catkin_ws
+    chdir: /home/ansible/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
   environment:
   - ROS_PYTHON_VERSION: 3
