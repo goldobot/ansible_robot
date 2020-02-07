@@ -30,7 +30,7 @@
     append: yes
     groups:
       - sudo
-    password: "{{ansible_password | password_hash('sha512')}}"
+    password: "{{ansible_become_password | password_hash('sha512')}}"
     shell: /bin/bash
     
 - name: set local user ssh key
