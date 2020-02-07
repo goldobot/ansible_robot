@@ -18,10 +18,10 @@
   become: yes
   apt:
     name:
-      - python-rosdep
-      - python-rosinstall-generator
-      - python-wstool
-      - python-rosinstall
+      - python3-rosdep
+      - python3-rosinstall-generator
+      - python3-wstool
+      - python3-rosinstall
       - build-essential
       - python-pexpect
       
@@ -66,18 +66,7 @@
   command:
     chdir: ~/ros_catkin_ws
     cmd: wstool init -j8 src melodic-ros_comm.rosinstall
-
-- name: check python dependencies
-  shell:
-    chdir: ~/ros_catkin_ws
-    cmd: rosdep check --from-paths src --ignore-src | grep python
-  environment:
-  - ROS_PYTHON_VERSION: 3
-  register: result
-  
-- debug:
-    var: result
-    
+   
 - name: install dependencies
   expect:
     chdir: ~/ros_catkin_ws
@@ -97,7 +86,7 @@
     owner: ansible
     
 - name: build ros
-  command:
+  shell:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
   environment:
