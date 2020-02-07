@@ -70,7 +70,7 @@
 - name: check python dependencies
   shell:
     chdir: ~/ros_catkin_ws
-    cmd: rosdep check --from-paths src --ignore-src | grep python
+    cmd: ROS_PYTHON_VERSION && rosdep check --from-paths src --ignore-src | grep python
   register: result
   
 - debug:
