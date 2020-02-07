@@ -70,7 +70,9 @@
 - name: check python dependencies
   shell:
     chdir: ~/ros_catkin_ws
-    cmd: export ROS_PYTHON_VERSION=3 && rosdep check --from-paths src --ignore-src | grep python
+    cmd: rosdep check --from-paths src --ignore-src | grep python
+  environment:
+  - ROS_PYTHON_VERSION: 3
   register: result
   
 - debug:
@@ -79,11 +81,13 @@
 - name: install dependencies
   expect:
     chdir: ~/ros_catkin_ws
-    command: export ROS_PYTHON_VERSION=3 && rosdep install --from-paths src --ignore-src --rosdistro melodic -y
+    command: rosdep install --from-paths src --ignore-src --rosdistro melodic -y
     timeout: 3600
     responses:
       \[sudo\] password for .*: "{{ansible_become_password}}"
-
+  environment:
+  - ROS_PYTHON_VERSION: 3
+  
 - name: create install directory
   become: yes
   file:
@@ -93,10 +97,12 @@
     owner: ansible
     
 - name: build ros
-  shell:
+  command:
     chdir: ~/ros_catkin_ws
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
-    
+  environment:
+  - ROS_PYTHON_VERSION: 3
+  
 - name: set install directory owner
   become: yes
   file:
