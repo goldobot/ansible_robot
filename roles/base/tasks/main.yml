@@ -44,12 +44,6 @@
   command:
     cmd: git config --global credential.helper store
     
-- name: remove pi user
-  become: yes
-  user:
-    name: pi
-    state: absent
-    
 - name: update all packages
   become: yes
   apt:
