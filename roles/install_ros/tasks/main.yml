@@ -76,14 +76,6 @@
       \[sudo\] password for .*: "{{ansible_become_password}}"
   environment:
   - ROS_PYTHON_VERSION: 3
-  
-- name: create install directory
-  become: yes
-  file:
-    path: /opt/ros/melodic
-    state: directory
-    mode : '755'
-    owner: ansible
     
 - name: build ros
   become: yes
@@ -92,12 +84,3 @@
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
   environment:
   - ROS_PYTHON_VERSION: 3
-  
-- name: set install directory owner
-  become: yes
-  file:
-    path: /opt/ros/melodic
-    state: directory
-    recurse: yes
-    owner: root
-    group: root

@@ -14,10 +14,15 @@
   copy:
     src: etc/lightdm/lightdm.conf
     dest: /etc/lightdm/lightdm.conf
-    owner: root
-    group: root
   notify: restart lightdm
   
+- name: create lxde startup directory
+  become: yes
+  file:
+    path: /home/goldo/.config/lxsession/LXDE
+    state: directory
+    owner: goldo
+    
 - name: copy lxde startup config file
   become: yes
   copy:
