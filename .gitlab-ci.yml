@@ -32,3 +32,12 @@ install_gui:
     - ansible
   script:
     - ansible-playbook -i hosts install_gui.yml
+    
+openocd-stm32:
+  stage: deploy
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook -i hosts openocd-stm32.yml
+    

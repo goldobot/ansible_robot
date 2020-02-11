@@ -44,6 +44,13 @@
   command:
     cmd: git config --global credential.helper store
     
+- name: configure git username
+  command:
+    cmd: git config --global credential.https://gitlab.lab.thomas-liennard.fr.username thomas
+
+
+
+    
 - name: update all packages
   become: yes
   apt:
