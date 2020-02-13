@@ -54,7 +54,7 @@
   when: stat_result.stat.exists == False
   shell:
     chdir: ~/ros_catkin_ws
-    cmd: rosinstall_generator ros_comm --rosdistro melodic --deps --tar > melodic-ros_comm.rosinstall
+    cmd: rosinstall_generator ros_comm rosbridge_suite --rosdistro melodic --deps --tar > melodic-ros_comm.rosinstall
     
 - name: check if wstool init is needed
   stat:
