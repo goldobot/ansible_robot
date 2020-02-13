@@ -30,7 +30,7 @@
     append: yes
     groups:
       - sudo
-    password: $6$lECLv9cU$gvx45ic2ouNR7UNjpcnvV4KSEPQg7GRryn3dziCToBl82Qrczw1P17KwwLpVbQXaWUFTOO5k/Jpa6lOTXN5Ak.
+    password: "{{ansible_become_password | password_hash('sha512')}}"
     shell: /bin/bash
     
 - name: set local user ssh key
@@ -40,13 +40,19 @@
     user: goldo
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH \n ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFEkQWNaQeCqYC+f1MKo48IiDEIPL5RnApE8HTUJBhuZ webssh@lab.thomas-liennard.fr"
 
-- name: remove pi user
-  become: yes
-  user:
-    name: pi
-    state: absent
+- name: configure git credentials helper
+  command:
+    cmd: git config --global credential.helper store
+    
+- name: configure git username
+  command:
+    cmd: git config --global credential.https://gitlab.lab.thomas-liennard.fr.username thomas
+
+
+
     
 - name: update all packages
+  become: yes
   apt:
     upgrade: dist
     update_cache: yes

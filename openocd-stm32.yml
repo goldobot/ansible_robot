@@ -1,0 +1,5 @@
+# File: openocd-stm32.yml
+---
+- hosts: robots
+  roles:
+  - openocd-stm32

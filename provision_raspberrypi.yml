@@ -19,5 +19,7 @@
   - provision
   
 - hosts: robots 
+  vars:
+  - ansible_user: ansible
   roles:
   - base
