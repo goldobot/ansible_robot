@@ -1,0 +1,10 @@
+[Unit]
+Description=ROS bridge service
+After=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/opt/ros/melodic/startup_rosbridge.sh
+
+[Install]
+WantedBy=multi-user.target
