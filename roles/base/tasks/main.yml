@@ -40,6 +40,12 @@
     user: goldo
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH \n ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFEkQWNaQeCqYC+f1MKo48IiDEIPL5RnApE8HTUJBhuZ webssh@lab.thomas-liennard.fr"
 
+- name: install git
+  become: yes
+  package:
+    name:
+      - git
+    
 - name: configure git credentials helper
   command:
     cmd: git config --global credential.helper store
