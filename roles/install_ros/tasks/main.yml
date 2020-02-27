@@ -24,6 +24,7 @@
       - python-rosinstall
       - build-essential
       - python-pexpect
+      - python3-pip
       
 - name: check if rosdep init is needed
   stat:
@@ -84,3 +85,16 @@
     cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
   environment:
   - ROS_PYTHON_VERSION: 3
+  
+- name: install python dependencies
+  become: yes
+  pip:
+    executable: pip3
+    name:
+    - pymongo
+    - tornado==4.5.3
+    - autobahn
+    - pyOpenSSL
+    - twisted
+    - netifaces
+    - defusedxml
