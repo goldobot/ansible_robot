@@ -17,21 +17,21 @@ base:
   script:
     - ansible-playbook -i hosts base.yml
     
-install_ros:
+ros:
   stage: deploy
   when: manual
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts install_ros.yml
+    - ansible-playbook -i hosts ros.yml
 
-install_gui:
+gui:
   stage: deploy
   when: manual
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts install_gui.yml
+    - ansible-playbook -i hosts gui.yml
     
 openocd-stm32:
   stage: deploy

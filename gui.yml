@@ -2,4 +2,4 @@
 ---
 - hosts: robots
   roles:
-  - install_gui
+  - gui

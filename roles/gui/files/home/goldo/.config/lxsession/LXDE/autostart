@@ -2,4 +2,4 @@
 @xset -dpms
 @xset s noblank
 @unclutter -root
-chromium-browser --kiosk http://localhost:8080
+chromium-browser --kiosk http://localhost/index.html

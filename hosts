@@ -1,2 +1,2 @@
 [robots]
-raspberrypi01 ansible_become_password=raspberry
+robot01 ansible_become_password=raspberry

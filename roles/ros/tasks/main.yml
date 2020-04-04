@@ -9,7 +9,7 @@
 - name: add ros repository
   become: yes
   apt_repository:
-    repo: "deb http://packages.ros.org/ros/ubuntu buster main"
+    repo: "deb http://packages.ros.org/ros/ubuntu {ansible_distribution_release} main"
     state: present
     filename: ros.list
     update_cache: yes
@@ -18,12 +18,12 @@
   become: yes
   apt:
     name:
-      - python-rosdep
-      - python-rosinstall-generator
-      - python-wstool
-      - python-rosinstall
+      - python3-rosdep
+      - python3-rosinstall-generator
+      - python3-wstool
+      - python3-rosinstall
       - build-essential
-      - python-pexpect
+      - python3-pexpect
       - python3-pip
       
 - name: check if rosdep init is needed
@@ -82,7 +82,7 @@
   become: yes
   shell:
     chdir: /home/ansible/ros_catkin_ws
-    cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+    cmd: ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic -j 2
   environment:
   - ROS_PYTHON_VERSION: 3
   
