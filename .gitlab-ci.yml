@@ -24,12 +24,18 @@ gui:
     - ansible
   script:
     - ansible-playbook -i hosts gui.yml
-    
-stm32_openocd:
+
+nucleo_comm_uart:
   stage: deploy
   when: manual
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts stm32_openocd.yml
-    
+    - ansible-playbook -i hosts nucleo_comm_uart.yml
+nucleo_openocd:
+  stage: deploy
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook -i hosts nucleo_openocd.yml

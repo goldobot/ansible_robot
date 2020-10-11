@@ -4,3 +4,6 @@ ansible_become_password: ansible
 provision_user: pi
 provision_password: raspberry
 provision_ansible_password: ansible
+robot_user: goldorak
+robot_user_password: goldorak
+robot_workspace_path: /home/{{robot_user}}/workspace

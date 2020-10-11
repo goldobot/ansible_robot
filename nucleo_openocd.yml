@@ -1,0 +1,5 @@
+# File: nucleo_openocd.yml
+---
+- hosts: robots
+  roles:
+  - nucleo_openocd

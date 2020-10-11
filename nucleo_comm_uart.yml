@@ -1,0 +1,5 @@
+# File: nucleo_comm_uart.yml
+---
+- hosts: robots
+  roles:
+  - nucleo_comm_uart

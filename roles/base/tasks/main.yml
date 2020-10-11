@@ -1,9 +1,9 @@
---- 
+---
 - name: set hostname
   become: yes
   hostname:
     name: "{{inventory_hostname}}"
-    
+
 - name: set hosts file
   become: yes
   template:
@@ -11,32 +11,31 @@
     dest: /etc/hosts
     owner: root
     group: root
-    mode: preserve    
-    
+    mode: preserve
+
 - name: create local user
   become: yes
   user:
-    name: goldorak
+    name: "{{ robot_user }}"
     append: yes
     groups:
       - sudo
-    password: "{{base_user_password | password_hash('sha512')}}"
+    password: "{{robot_user_password | password_hash('sha512')}}"
     shell: /bin/bash
-    
+
 - name: set local user ssh key
   become: yes
   authorized_key:
-    exclusive: yes
-    user: goldorak
+    user: "{{ robot_user }}"
     key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH"
-  
+
 - name: update all packages
   become: yes
   apt:
     upgrade: dist
     update_cache: yes
     cache_valid_time: 3600
-    
+
 - name: install essential packages
   become: yes
   package:
@@ -45,4 +44,10 @@
       - build-essential
       - cmake
       - python3
-    
+
+- name: create workspace directory
+  file:
+    path: "{{ robot_workspace_path }}"
+    owner: "{{ robot_user }}"
+    group: "{{ robot_user }}"
+    state: directory
