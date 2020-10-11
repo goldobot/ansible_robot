@@ -7,7 +7,9 @@
     
 - name: checkout comm_uart repository
   become: yes
-  become_user: "{{ robot_user }}"  
+  become_user: "{{ robot_user }}"
+  vars:
+    ansible_ssh_pipelining: true
   git:
     repo: 'https://github.com/goldobot/comm_uart.git'
     dest: "{{robot_workspace_path}}/comm_uart"

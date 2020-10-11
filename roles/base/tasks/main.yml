@@ -47,7 +47,8 @@
 
 - name: create workspace directory
   become: yes
-  become_user: "{{ robot_user }}"
   file:
     path: "{{ robot_workspace_path }}"
     state: directory
+    owner: "{{ robot_user }}"
+    group: "{{ robot_user_group }}"
