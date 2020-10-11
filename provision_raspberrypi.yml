@@ -12,7 +12,6 @@
 - hosts: robots
   vars:
   - ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
-  - provision_ansible_password: "{{ ansible_become_password }}"
   - ansible_user: "{{ provision_user }}"
   - ansible_ssh_pass: "{{ provision_password }}"
   - ansible_password: "{{ provision_password }}"
