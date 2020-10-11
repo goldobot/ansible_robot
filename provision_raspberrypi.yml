@@ -16,10 +16,6 @@
   - ansible_user: "{{ provision_user }}"
   - ansible_ssh_pass: "{{ provision_password }}"
   - ansible_password: "{{ provision_password }}"
-  - ansible_become_password: "{{ provision_password }}"  
+  - ansible_become_password: "{{ provision_password }}"
   roles:
   - provision
-  
-- hosts: robots 
-  roles:
-  - base
