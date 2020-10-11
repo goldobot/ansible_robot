@@ -24,6 +24,8 @@
 - name: compile comm_uart
   become: yes
   become_user: "{{ robot_user }}"
+  vars:
+    ansible_ssh_pipelining: true
   make:
     chdir: "{{robot_workspace_path}}/comm_uart"
     
