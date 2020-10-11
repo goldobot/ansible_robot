@@ -12,6 +12,16 @@
     owner: root
     group: root
     mode: preserve
+    
+- name: set wpa_supplicant config file
+  become: yes
+  template:
+    src: etc/wpa_supplicant/wpa_supplicant.conf
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf
+    owner: root
+    group: root
+    mode: preserve
+  notify: restart wifi
 
 - name: create local user
   become: yes

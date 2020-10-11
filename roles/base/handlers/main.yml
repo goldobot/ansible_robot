@@ -1,1 +1,6 @@
 ---
+- name: restart wifi
+  become: yes
+  shell: |
+    rfkill unblock
+    wpa_cli -i wlan0 reconfigure
