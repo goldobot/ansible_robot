@@ -7,6 +7,9 @@ provision_ansible_password: ansible
 robot_user: goldorak
 robot_user_group: goldorak
 robot_user_password: goldorak
+robot_user_ssh_keys:
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH"
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPF6FQdeToXBGsjtw+0gOaKYaFyDsZurfNJTLlHM8lN lab\thomas@laptop"
 robot_workspace_path: /home/{{robot_user}}/workspace
 robot_wifi_ssid: goldorak
 robot_wifi_psk: goldorak

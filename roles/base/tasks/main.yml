@@ -1,4 +1,4 @@
----
+--- 
 - name: set hostname
   become: yes
   hostname:
@@ -41,14 +41,21 @@
     groups:
       - sudo
     password: "{{robot_user_password | password_hash('sha512')}}"
-    shell: /bin/bash
+    shell: /bin/bash    
 
 - name: set local user ssh key
   become: yes
   authorized_key:
     user: "{{ robot_user }}"
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPgjBGCCUdKua2Fmf8llaWuQq/ZcmvdwirS8aCBWuupW lab\\thomas@DESKTOP-53RG1OH"
-
+    key: "{{ item }}"
+  loop: "{{robot_user_ssh_keys}}"  
+- name: delete default user
+  become: yes
+  user:
+    name: pi
+    state: absent
+    remove: yes
+    
 - name: update all packages
   become: yes
   apt:

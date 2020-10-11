@@ -32,6 +32,7 @@ nucleo_comm_uart:
     - ansible
   script:
     - ansible-playbook -i hosts nucleo_comm_uart.yml
+    
 nucleo_openocd:
   stage: deploy
   when: manual
@@ -39,3 +40,11 @@ nucleo_openocd:
     - ansible
   script:
     - ansible-playbook -i hosts nucleo_openocd.yml
+    
+samba_share:
+  stage: deploy
+  when: manual
+  tags:
+    - ansible
+  script:
+    - ansible-playbook -i hosts samba_share.yml

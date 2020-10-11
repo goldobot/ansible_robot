@@ -1,0 +1,22 @@
+---
+- name: update apt cache
+  become: yes
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install samba packages
+  become: yes
+  package:
+    name:
+      - samba
+      - samba-client
+      
+- name: set samba config file
+  become: yes
+  template:
+    src: etc/samba/smb.conf
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+  notify: restart samba

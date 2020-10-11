@@ -1,0 +1,5 @@
+# File: samba_share.yml
+---
+- hosts: robots
+  roles:
+  - samba_share
