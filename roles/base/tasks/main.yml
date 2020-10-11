@@ -72,3 +72,18 @@
     state: directory
     owner: "{{ robot_user }}"
     group: "{{ robot_user_group }}"
+    
+- name: create devices directory
+  become: yes
+  file:
+    path: /dev/goldorak
+    state: directory
+    
+- name: set udev config file
+  become: yes
+  template:
+    src: etc/udev/rules.d/99-usb-serial.rules
+    dest: /etc/udev/rules.d/99-usb-serial.rules
+    owner: root
+    group: root
+  notify: restart udev

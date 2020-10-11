@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", SYMLINK+="goldorak/ttyNucleo", ENV{SYSTEMD_WANTS}=nucleo_comm_uart.service

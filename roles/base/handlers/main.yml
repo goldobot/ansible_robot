@@ -4,5 +4,9 @@
   shell: |
     rfkill unblock 0
     wpa_cli -i wlan0 reconfigure
-    ifdown wlan0
-    ifup wlan0
+    
+- name: restart udev
+  become: yes
+  shell: |
+    udevadm control --reload-rules
+    udevadm trigger
