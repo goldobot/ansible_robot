@@ -15,15 +15,7 @@ base:
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts base.yml
-    
-ros:
-  stage: deploy
-  when: manual
-  tags:
-    - ansible
-  script:
-    - ansible-playbook -i hosts ros.yml
+    - ansible-playbook -i hosts base.yml    
 
 gui:
   stage: deploy
@@ -33,11 +25,11 @@ gui:
   script:
     - ansible-playbook -i hosts gui.yml
     
-openocd-stm32:
+stm32_openocd:
   stage: deploy
   when: manual
   tags:
     - ansible
   script:
-    - ansible-playbook -i hosts openocd-stm32.yml
+    - ansible-playbook -i hosts stm32_openocd.yml
     

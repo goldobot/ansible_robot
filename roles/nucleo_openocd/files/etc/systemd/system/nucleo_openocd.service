@@ -1,0 +1,14 @@
+[Unit]
+Description=Nucleo OpenOCD service
+After=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStart=openocd -f /usr/share/openocd/scripts/board/st_nucleo_f3.cfg
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+

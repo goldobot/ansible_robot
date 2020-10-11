@@ -1,0 +1,22 @@
+---
+- name: install openocd package
+  become: yes
+  apt:
+    name:
+      - openocd
+
+- name: create openocd service file
+  become: yes
+  copy:
+    src: etc/systemd/system/nucleo_openocd.service
+    dest: /etc/systemd/system/nucleo_openocd.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: enable openocd service
+  become: yes
+  service:
+    name: nucleo_openocd
+    state: started
+    enabled: yes

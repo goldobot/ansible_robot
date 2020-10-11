@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenOCD service
+Description=Nucleo OpenOCD service
 After=network.target
 
 [Service]

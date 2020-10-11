@@ -15,11 +15,3 @@
     exclusive: yes
     user: ansible
     key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
-
-- name: generate ansible private ssh key
-  become: yes  
-  openssh_keypair:
-    path: /home/ansible/.ssh/id_ed25519
-    type: ed25519
-    owner: ansible
-    group: ansible
