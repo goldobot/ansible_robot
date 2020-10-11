@@ -46,6 +46,7 @@
       - python3
 
 - name: create workspace directory
+  become: yes
   file:
     path: "{{ robot_workspace_path }}"
     owner: "{{ robot_user }}"
