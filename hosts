@@ -1,2 +1,2 @@
 [robots]
-robot01
+robot01 robot_eth0_static_ip=192.168.0.200 robot_wlan0_static_ip=192.168.1.200

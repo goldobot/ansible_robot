@@ -22,6 +22,16 @@
     group: root
     mode: preserve
   notify: restart wifi
+  
+- name: set dhcpcd config file
+  become: yes
+  template:
+    src: etc/dhcpcd.conf
+    dest: /etc/dhcpcd.conf
+    owner: root
+    group: root
+    mode: preserve
+  notify: restart wifi
 
 - name: create local user
   become: yes
