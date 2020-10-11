@@ -1,22 +1,38 @@
 ---
-- name: install openocd package
+- name: refresh apt cache
   become: yes
   apt:
-    name:
-      - openocd
-
-- name: create openocd service file
+    update_cache: yes
+    cache_valid_time: 3600
+    
+- name: checkout comm_uart repository
+  git:
+    repo: 'https://github.com/goldobot/comm_uart.git'
+    dest: {{robot_workspace_path}}/comm_uart
+    version: develop
+    
+- name: install dependencies
   become: yes
-  copy:
-    src: etc/systemd/system/nucleo_openocd.service
-    dest: /etc/systemd/system/nucleo_openocd.service
+  package:
+    name:
+      - libzmq3-dev
+      
+- name: compile comm_uart
+  make:
+    chdir: {{robot_workspace_path}}/comm_uart
+    
+- name: create nucleo_comm_uart service file
+  become: yes
+  template:
+    src: etc/systemd/system/nucleo_comm_uart.service
+    dest: /etc/systemd/system/nucleo_comm_uart.service
     owner: root
     group: root
     mode: '0644'
 
-- name: enable openocd service
+- name: enable nucleo_comm_uart service
   become: yes
   service:
-    name: nucleo_openocd
+    name: nucleo_comm_uart
     state: started
     enabled: yes
