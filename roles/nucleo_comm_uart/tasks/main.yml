@@ -6,6 +6,8 @@
     cache_valid_time: 3600
     
 - name: checkout comm_uart repository
+  become: yes
+  become_user: "{{ robot_user }}"  
   git:
     repo: 'https://github.com/goldobot/comm_uart.git'
     dest: "{{robot_workspace_path}}/comm_uart"
@@ -18,6 +20,8 @@
       - libzmq3-dev
       
 - name: compile comm_uart
+  become: yes
+  become_user: "{{ robot_user }}"
   make:
     chdir: "{{robot_workspace_path}}/comm_uart"
     
