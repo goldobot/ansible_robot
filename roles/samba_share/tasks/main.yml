@@ -12,6 +12,10 @@
       - samba
       - samba-client
       
+- name: create samba user
+  become: yes
+  shell: "(echo {{robot_user_password}}; echo {{robot_user_password}}) | smbpasswd -s -a {{robot_user}}"
+  
 - name: set samba config file
   become: yes
   template:

@@ -40,6 +40,7 @@
     append: yes
     groups:
       - sudo
+      - video
     password: "{{robot_user_password | password_hash('sha512')}}"
     shell: /bin/bash    
 
@@ -96,19 +97,3 @@
     group: root
   notify: restart udev
   
-- name: setup camera
-  become: yes
-  ini_file:
-    path: /boot/config.txt
-    section: all
-    option: start_x
-    value: 1
-   
-- name: setup camera
-  become: yes
-  ini_file:
-    path: /boot/config.txt
-    section: all
-    option: gpu_mem
-    value: 128
-
