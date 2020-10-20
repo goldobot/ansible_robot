@@ -1,0 +1,11 @@
+[Unit]
+Description=Robot main program
+
+[Service]
+WorkingDirectory=%h/workspace/goldo_main
+ExecStart=%h/workspace/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

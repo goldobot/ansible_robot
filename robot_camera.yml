@@ -1,0 +1,5 @@
+# File: robot_camera.yml
+---
+- hosts: robots
+  roles:
+  - robot_camera

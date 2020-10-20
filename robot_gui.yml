@@ -1,0 +1,5 @@
+# File: robot_gui.yml
+---
+- hosts: robots
+  roles:
+  - robot_gui

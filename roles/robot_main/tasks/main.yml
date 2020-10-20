@@ -1,0 +1,16 @@
+---
+- name: create systemd user directory
+  become: yes
+  file:
+    path: /home/{{robot_user}}/.config/systemd/user/
+    state: directory
+    owner: "{{robot_user}}"
+    group: "{{robot_user_group}}"
+    
+- name: create robot_gui service file
+  become: yes
+  template:
+    src: .config/systemd/user/robot_gui.service
+    dest: /home/{{robot_user}}/.config/systemd/user/robot_gui.service
+    owner: "{{robot_user}}"
+    group: "{{robot_user_group}}"

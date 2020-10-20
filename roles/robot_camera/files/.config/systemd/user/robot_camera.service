@@ -1,0 +1,11 @@
+[Unit]
+Description=Robot Camera
+
+[Service]
+WorkingDirectory=%h/workspace/goldo_camera
+ExecStart=%h/workspace/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

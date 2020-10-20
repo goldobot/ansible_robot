@@ -1,0 +1,26 @@
+---
+- name: create systemd user directory
+  become: yes
+  file:
+    path: /home/{{robot_user}}/.config/systemd/user/
+    state: directory
+    owner: "{{robot_user}}"
+    group: "{{robot_user_group}}"
+    
+- name: create robot_camera service file
+  become: yes
+  template:
+    src: .config/systemd/user/robot_camera.service
+    dest: /home/{{robot_user}}/.config/systemd/user/robot_camera.service
+    owner: "{{robot_user}}"
+    group: "{{robot_user_group}}"
+    
+- name: checkout goldo_camera repository
+  become: yes
+  become_user: "{{ robot_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+  git:
+    repo: 'https://github.com/goldobot/goldo_camera.git'
+    dest: "{{robot_workspace_path}}/goldo_camera"
+    version: develop
