@@ -1,0 +1,10 @@
+[Unit]
+Description=Nucleo comm_uart service
+After=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStart={{robot_workspace_path}}/comm_uart/comm_uart --pub=3003 --sub=3004 --id=1 --baudrate={{nucleo_comm_uart_ftdi_baudrate}} --device={{nucleo_comm_uart_ftdi_device}}
+
+[Install]
+WantedBy=multi-user.target

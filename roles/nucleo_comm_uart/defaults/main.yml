@@ -1,3 +1,5 @@
 ---
 nucleo_comm_uart_device: /dev/goldorak/ttyNucleo
 nucleo_comm_uart_baudrate: 500000
+nucleo_comm_uart_ftdi_device: /dev/goldorak/ttyFtdi
+nucleo_comm_uart_ftdi_baudrate: 1000000

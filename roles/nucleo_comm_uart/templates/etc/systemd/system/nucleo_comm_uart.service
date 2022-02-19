@@ -4,11 +4,7 @@ After=network.target
 
 [Service]
 TimeoutStartSec=0
-ExecStart={{robot_workspace_path}}/comm_uart/comm_uart {{nucleo_comm_uart_device}} {{nucleo_comm_uart_baudrate}}
+ExecStart={{robot_workspace_path}}/comm_uart/comm_uart --pub=3001 --sub=3002 --id=0 --baudrate={{nucleo_comm_uart_baudrate}} --device={{nucleo_comm_uart_device}}
 
 [Install]
 WantedBy=multi-user.target
-
-
-
-

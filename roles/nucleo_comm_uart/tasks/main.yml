@@ -4,7 +4,7 @@
   apt:
     update_cache: yes
     cache_valid_time: 3600
-    
+
 - name: checkout comm_uart repository
   become: yes
   become_user: "{{ robot_user }}"
@@ -14,13 +14,13 @@
     repo: 'https://github.com/goldobot/comm_uart.git'
     dest: "{{robot_workspace_path}}/comm_uart"
     version: develop
-    
+
 - name: install dependencies
   become: yes
   package:
     name:
       - libzmq3-dev
-      
+
 - name: compile comm_uart
   become: yes
   become_user: "{{ robot_user }}"
@@ -28,12 +28,21 @@
     ansible_ssh_pipelining: true
   make:
     chdir: "{{robot_workspace_path}}/comm_uart"
-    
+
 - name: create nucleo_comm_uart service file
   become: yes
   template:
     src: etc/systemd/system/nucleo_comm_uart.service
     dest: /etc/systemd/system/nucleo_comm_uart.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: create nucleo_comm_uart_ftdi service file
+  become: yes
+  template:
+    src: etc/systemd/system/nucleo_comm_uart_ftdi.service
+    dest: /etc/systemd/system/nucleo_comm_uart_ftdi.service
     owner: root
     group: root
     mode: '0644'

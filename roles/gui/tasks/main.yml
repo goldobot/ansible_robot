@@ -1,4 +1,4 @@
----  
+---
 - name: install packages
   become: yes
   apt:
@@ -9,18 +9,20 @@
       - unclutter
       - python3-pyqt5
       - python3-pyqt5.qtquick
-      - qml-module-qtquick
+      - qml-module-qtquick2
+      - qml-module-qtgraphicaleffects
       - qml-module-qtquick-controls2
       - qml-module-qtquick-layouts
+      - qml-module-qtquick-templates2
       - qml-module-qtquick-window2
-      
+
 - name: copy lightdm config file
   become: yes
   template:
     src: etc/lightdm/lightdm.conf
     dest: /etc/lightdm/lightdm.conf
   notify: restart lightdm
-  
+
 - name: create lxde startup directory
   become: yes
   file:
@@ -28,3 +30,13 @@
     state: directory
     owner: "{{robot_user}}"
     group: "{{robot_user_group}}"
+
+- name: checkout goldo_gui repository
+  become: yes
+  become_user: "{{ robot_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+  git:
+    repo: 'https://github.com/goldobot/goldo_gui.git'
+    dest: "{{robot_workspace_path}}/goldo_gui"
+    version: master

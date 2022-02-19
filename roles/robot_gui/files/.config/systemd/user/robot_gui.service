@@ -3,6 +3,7 @@ Description=Robot GUI
 
 [Service]
 WorkingDirectory=%h/workspace/goldo_gui
+Environment="LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0"
 ExecStart=%h/workspace/venv/bin/python main.py
 Restart=always
 RestartSec=10

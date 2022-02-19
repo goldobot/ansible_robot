@@ -6,11 +6,21 @@
     state: directory
     owner: "{{robot_user}}"
     group: "{{robot_user_group}}"
-    
-- name: create robot_gui service file
+
+- name: create robot_main service file
   become: yes
   template:
-    src: .config/systemd/user/robot_gui.service
-    dest: /home/{{robot_user}}/.config/systemd/user/robot_gui.service
+    src: .config/systemd/user/robot_main.service
+    dest: /home/{{robot_user}}/.config/systemd/user/robot_main.service
     owner: "{{robot_user}}"
     group: "{{robot_user_group}}"
+
+- name: checkout goldo_main repository
+  become: yes
+  become_user: "{{ robot_user }}"
+  vars:
+    ansible_ssh_pipelining: true
+  git:
+    repo: 'https://github.com/goldobot/goldo_main.git'
+    dest: "{{robot_workspace_path}}/goldo_main"
+    version: master

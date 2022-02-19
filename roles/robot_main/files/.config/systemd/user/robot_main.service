@@ -1,9 +1,12 @@
 [Unit]
-Description=Robot main program
+Description=Robot Main
 
 [Service]
 WorkingDirectory=%h/workspace/goldo_main
+Environment="LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0"
+Environment=PYTHONUNBUFFERED=1
 ExecStart=%h/workspace/venv/bin/python main.py
+StandardOutput=file:%h/log/goldo_main.log
 Restart=always
 RestartSec=10
 
